@@ -1,0 +1,969 @@
+<!-- index.html (Static / No server needed) -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Samer Jasim — Software Developer (Full-Stack & Android). Node.js, PHP, React Native, Ionic Vue." />
+  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f7f8fb" media="(prefers-color-scheme: light)">
+  <title>Samer Jasim — Software Developer</title>
+
+  <style>
+    /* =========================================================
+       Samer Jasim — Modern One-Page Portfolio (Dark/Light auto)
+       - No external libraries
+       - Fast + responsive
+       - Light animations
+    ========================================================= */
+
+    :root{
+      --bg: #f7f8fb;
+      --surface: rgba(255,255,255,.75);
+      --surface-2: rgba(255,255,255,.60);
+      --text: #0b1220;
+      --muted: rgba(11,18,32,.68);
+      --border: rgba(11,18,32,.10);
+      --shadow: 0 14px 40px rgba(11,18,32,.10);
+      --accent: #2563eb;
+      --accent-2: #22c55e;
+      --danger: #ef4444;
+
+      --radius: 18px;
+      --radius-sm: 14px;
+      --container: 1080px;
+      --pad: 20px;
+
+      --chip-bg: rgba(37,99,235,.10);
+      --chip-border: rgba(37,99,235,.20);
+
+      --ring: 0 0 0 4px rgba(37,99,235,.15);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root{
+        --bg: #070b14;
+        --surface: rgba(12,18,34,.70);
+        --surface-2: rgba(12,18,34,.50);
+        --text: #eaf0ff;
+        --muted: rgba(234,240,255,.70);
+        --border: rgba(234,240,255,.10);
+        --shadow: 0 18px 55px rgba(0,0,0,.45);
+        --accent: #60a5fa;
+        --accent-2: #34d399;
+
+        --chip-bg: rgba(96,165,250,.10);
+        --chip-border: rgba(96,165,250,.22);
+
+        --ring: 0 0 0 4px rgba(96,165,250,.18);
+      }
+    }
+
+    /* Manual theme override (optional) */
+    html[data-theme="light"]{
+      --bg: #f7f8fb;
+      --surface: rgba(255,255,255,.75);
+      --surface-2: rgba(255,255,255,.60);
+      --text: #0b1220;
+      --muted: rgba(11,18,32,.68);
+      --border: rgba(11,18,32,.10);
+      --shadow: 0 14px 40px rgba(11,18,32,.10);
+      --accent: #2563eb;
+      --accent-2: #22c55e;
+      --chip-bg: rgba(37,99,235,.10);
+      --chip-border: rgba(37,99,235,.20);
+      --ring: 0 0 0 4px rgba(37,99,235,.15);
+    }
+    html[data-theme="dark"]{
+      --bg: #070b14;
+      --surface: rgba(12,18,34,.70);
+      --surface-2: rgba(12,18,34,.50);
+      --text: #eaf0ff;
+      --muted: rgba(234,240,255,.70);
+      --border: rgba(234,240,255,.10);
+      --shadow: 0 18px 55px rgba(0,0,0,.45);
+      --accent: #60a5fa;
+      --accent-2: #34d399;
+      --chip-bg: rgba(96,165,250,.10);
+      --chip-border: rgba(96,165,250,.22);
+      --ring: 0 0 0 4px rgba(96,165,250,.18);
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(900px 500px at 20% -10%, rgba(37,99,235,.20), transparent 60%),
+        radial-gradient(900px 500px at 90% 0%, rgba(34,197,94,.18), transparent 55%),
+        radial-gradient(700px 500px at 50% 110%, rgba(37,99,235,.14), transparent 60%),
+        var(--bg);
+      line-height:1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    a:focus-visible, button:focus-visible{ outline:none; box-shadow:var(--ring); border-radius:12px; }
+
+    .container{
+      width:min(var(--container), 100%);
+      margin:0 auto;
+      padding: 0 var(--pad);
+    }
+
+    /* Header */
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(to bottom, rgba(0,0,0,.00), rgba(0,0,0,.00));
+      border-bottom: 1px solid rgba(0,0,0,0);
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 14px 0;
+    }
+    .brand{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      font-weight:700;
+      letter-spacing:.2px;
+    }
+    .dot{
+      width:12px;
+      height:12px;
+      border-radius:999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 0 6px rgba(37,99,235,.08);
+    }
+    .navlinks{
+      display:flex;
+      gap: 14px;
+      align-items:center;
+    }
+    .navlinks a{
+      padding: 8px 10px;
+      border-radius: 12px;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 14px;
+      transition: transform .16s ease, background-color .16s ease, color .16s ease;
+    }
+    .navlinks a:hover{
+      color: var(--text);
+      background: rgba(255,255,255,.06);
+      transform: translateY(-1px);
+    }
+
+    .nav-actions{ display:flex; gap:10px; align-items:center; }
+    .btn-icon{
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      border-radius: 14px;
+      padding: 10px 12px;
+      cursor:pointer;
+      box-shadow: 0 10px 30px rgba(0,0,0,.06);
+      transition: transform .16s ease, border-color .16s ease, background-color .16s ease;
+    }
+    .btn-icon:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.18); }
+    .btn-icon:active{ transform: translateY(0px); }
+
+    /* Hero */
+    .hero{
+      padding: 44px 0 22px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items:stretch;
+    }
+    .card{
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .hero-main{
+      padding: 26px;
+      overflow:hidden;
+      position:relative;
+    }
+    .hero-main::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(500px 220px at 20% 0%, rgba(37,99,235,.18), transparent 65%),
+        radial-gradient(520px 240px at 70% 0%, rgba(34,197,94,.14), transparent 60%);
+      pointer-events:none;
+      filter: blur(0px);
+    }
+    .hero-main > *{ position:relative; }
+
+    .kicker{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      font-weight:700;
+      font-size: 13px;
+      color: var(--muted);
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+    }
+    .kicker b{ color: var(--text); }
+
+    h1{
+      margin: 12px 0 10px;
+      font-size: clamp(28px, 3.2vw, 44px);
+      line-height:1.15;
+      letter-spacing:-.6px;
+    }
+    .subtitle{
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 15px;
+      max-width: 62ch;
+    }
+
+    .cta{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      font-weight:800;
+      font-size: 14px;
+      cursor:pointer;
+      transition: transform .16s ease, background-color .16s ease, border-color .16s ease;
+      user-select:none;
+      min-height: 44px;
+    }
+    .btn:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.20); }
+    .btn:active{ transform: translateY(0px); }
+    .btn.primary{
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      border-color: rgba(255,255,255,.18);
+      color: #061018;
+    }
+    .btn.ghost{
+      background: transparent;
+    }
+
+    .hero-side{
+      padding: 18px;
+      display:flex;
+      flex-direction:column;
+      gap: 12px;
+    }
+    .mini{
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+    }
+    .mini .label{
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .9px;
+      margin-bottom: 4px;
+    }
+    .mini .value{
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    /* Section */
+    section{
+      padding: 18px 0;
+    }
+    .section-head{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap: 10px;
+      margin: 10px 0 12px;
+    }
+    .section-title{
+      margin:0;
+      font-size: 18px;
+      letter-spacing: -.2px;
+    }
+    .section-desc{
+      margin:0;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    /* Layout blocks */
+    .grid-2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .grid-3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .block{
+      padding: 18px;
+    }
+    .block p{ margin: 0; color: var(--muted); font-weight: 600; }
+
+    /* Chips */
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      border-radius: 999px;
+      padding: 9px 12px;
+      border: 1px solid var(--chip-border);
+      background: var(--chip-bg);
+      color: var(--text);
+      font-weight: 800;
+      font-size: 13px;
+    }
+    .chip small{
+      font-weight: 900;
+      color: var(--muted);
+    }
+
+    /* Services */
+    .service{
+      padding: 18px;
+    }
+    .service h3{
+      margin: 0 0 6px;
+      font-size: 15px;
+      letter-spacing: -.1px;
+    }
+    .service ul{
+      margin: 10px 0 0;
+      padding: 0 0 0 18px;
+      color: var(--muted);
+      font-weight: 650;
+    }
+    .service li{ margin: 7px 0; }
+
+    /* Timeline */
+    .timeline{
+      padding: 18px;
+    }
+    .tl-item{
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      margin-bottom: 12px;
+      transition: transform .16s ease, border-color .16s ease;
+    }
+    .tl-item:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.18); }
+    .tl-top{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .tl-title{
+      font-weight: 900;
+      letter-spacing: -.2px;
+    }
+    .tl-date{
+      color: var(--muted);
+      font-weight: 800;
+      font-size: 13px;
+      white-space:nowrap;
+    }
+    .tl-meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .link{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      font-weight: 900;
+      font-size: 13px;
+      color: var(--text);
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      transition: transform .16s ease, border-color .16s ease;
+    }
+    .link:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.20); }
+
+    .note{
+      margin-top: 10px;
+      color: var(--muted);
+      font-weight: 650;
+      font-size: 13px;
+    }
+
+    /* Projects placeholder */
+    .placeholder{
+      padding: 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 14px;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px dashed var(--border);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      font-weight: 900;
+      font-size: 13px;
+      white-space:nowrap;
+    }
+
+    /* Contact */
+    .contact{
+      padding: 18px;
+      display:flex;
+      flex-direction:column;
+      gap: 12px;
+    }
+    .contact-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      align-items:center;
+      justify-content:space-between;
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+    }
+    .contact-row .left{
+      display:flex;
+      flex-direction:column;
+      gap: 3px;
+      min-width: 220px;
+    }
+    .contact-row .left span{
+      color: var(--muted);
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing:.7px;
+      text-transform:uppercase;
+    }
+    .contact-row .left b{
+      font-size: 14px;
+      letter-spacing: -.1px;
+    }
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 16px;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,.75);
+      color: white;
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-weight: 800;
+      font-size: 13px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .18s ease, transform .18s ease;
+    }
+    .toast.show{
+      opacity: 1;
+      transform: translateX(-50%) translateY(-2px);
+    }
+
+    /* Footer */
+    footer{
+      padding: 18px 0 30px;
+      color: var(--muted);
+      font-weight: 650;
+      font-size: 13px;
+    }
+
+    /* Motion (subtle) */
+    @media (prefers-reduced-motion: no-preference){
+      .reveal{
+        opacity: 0;
+        transform: translateY(10px);
+        transition: opacity .5s ease, transform .5s ease;
+      }
+      .reveal.in{
+        opacity: 1;
+        transform: translateY(0px);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 900px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      .grid-3{ grid-template-columns: 1fr; }
+      .grid-2{ grid-template-columns: 1fr; }
+      .navlinks{ display:none; }
+    }
+    @media (max-width: 420px){
+      .hero-main{ padding: 20px; }
+      .hero-side{ padding: 14px; }
+      .btn{ width: 100%; }
+      .btn-icon{ padding: 10px 10px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="#top" aria-label="Go to top">
+          <span class="dot" aria-hidden="true"></span>
+          <span>Samer Jasim</span>
+        </a>
+
+        <nav class="navlinks" aria-label="Primary">
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#stack">Tech Stack</a>
+          <a href="#experience">Experience</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="nav-actions">
+          <button class="btn-icon" id="themeBtn" type="button" title="Toggle theme" aria-label="Toggle theme">
+            <!-- simple icon -->
+            <span aria-hidden="true">🌓</span>
+          </button>
+          <a class="btn-icon" href="#contact" title="Contact" aria-label="Contact">
+            <span aria-hidden="true">✉️</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="container">
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero-grid">
+          <div class="card hero-main reveal">
+            <div class="kicker">
+              <span aria-hidden="true">⚡</span>
+              <span><b>Software Developer</b> • 8+ years experience</span>
+            </div>
+
+            <h1>Samer Jasim<br/>Building fast web & Android solutions.</h1>
+
+            <p class="subtitle">
+              Full-Stack Developer (Node.js / PHP) and Android Developer (React Native / Ionic Vue).
+              I deliver clean, scalable software with smooth UX and reliable deployment.
+            </p>
+
+            <div class="chips" aria-label="Highlights">
+              <span class="chip">Full-Stack <small>Node.js · PHP</small></span>
+              <span class="chip">Android <small>React Native</small></span>
+              <span class="chip">Hybrid Apps <small>Ionic · Vue</small></span>
+            </div>
+
+            <div class="cta">
+              <a class="btn primary" href="mailto:samerjk07@gmail.com?subject=Hello%20Samer%20—%20Project%20Inquiry">
+                Email me
+                <span aria-hidden="true">→</span>
+              </a>
+
+              <!-- WhatsApp: Replace 9647XXXXXXXXX with your real number in international format -->
+              <a class="btn" id="whatsappBtn" href="#" role="button" aria-disabled="true" title="Add your WhatsApp number to enable">
+                WhatsApp
+                <span aria-hidden="true">💬</span>
+              </a>
+
+              <button class="btn ghost" type="button" id="copyEmailBtn">
+                Copy email
+                <span aria-hidden="true">📋</span>
+              </button>
+            </div>
+
+            <p class="note">
+              Based in Iraq • Available for remote work • Fast delivery with clean code
+            </p>
+          </div>
+
+          <aside class="card hero-side reveal" aria-label="Quick info">
+            <div class="mini">
+              <div class="label">Location</div>
+              <div class="value">Iraq</div>
+            </div>
+            <div class="mini">
+              <div class="label">Birth Year</div>
+              <div class="value">1999</div>
+            </div>
+            <div class="mini">
+              <div class="label">Degree</div>
+              <div class="value">BSc — Chemistry Science</div>
+            </div>
+            <div class="mini">
+              <div class="label">Email</div>
+              <div class="value">samerjk07@gmail.com</div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ABOUT + LANGUAGES -->
+      <section id="about">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">About</h2>
+            <p class="section-desc">Who I am and how I work</p>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card block reveal">
+            <p>
+              I’m Samer Jasim, a software developer with over 8 years of experience.
+              I focus on building modern web applications and Android solutions with performance,
+              clean architecture, and reliable deployment.
+            </p>
+          </div>
+
+          <div class="card block reveal">
+            <p style="margin-bottom:10px;">
+              <b style="color:var(--text);">Languages</b>
+            </p>
+            <div class="chips" aria-label="Languages">
+              <span class="chip">Arabic <small>Native</small></span>
+              <span class="chip">English <small>Professional</small></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <section id="services">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">Services</h2>
+            <p class="section-desc">What I can deliver for you</p>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card service reveal">
+            <h3>Development</h3>
+            <ul>
+              <li>Android app development (React Native)</li>
+              <li>Hybrid mobile apps (Ionic + Vue)</li>
+              <li>Web development (front-end + back-end)</li>
+              <li>Custom software & integrations (APIs, automation)</li>
+            </ul>
+          </div>
+
+          <div class="card service reveal">
+            <h3>Server Management</h3>
+            <ul>
+              <li>Server administration & troubleshooting</li>
+              <li>Deploying websites & applications (hosting / servers)</li>
+              <li>Performance optimization and stability improvements</li>
+              <li>Publishing software online with best practices</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- TECH STACK -->
+      <section id="stack">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">Tech Stack / Tools</h2>
+            <p class="section-desc">Core technologies I work with</p>
+          </div>
+        </div>
+
+        <div class="card block reveal">
+          <div class="chips" aria-label="Tech stack">
+            <span class="chip">Backend <small>Node.js</small></span>
+            <span class="chip">Backend <small>PHP</small></span>
+            <span class="chip">APIs <small>REST</small></span>
+
+            <span class="chip">Mobile <small>React Native</small></span>
+            <span class="chip">Mobile <small>Ionic · Vue</small></span>
+
+            <span class="chip">Web <small>HTML · CSS · JavaScript</small></span>
+            <span class="chip">Python <small>Flask</small></span>
+            <span class="chip">CMS <small>WordPress</small></span>
+
+            <span class="chip">Databases <small>MySQL</small></span>
+            <span class="chip">Servers <small>Linux</small></span>
+            <span class="chip">Web Server <small>Nginx</small></span>
+          </div>
+
+          <p class="note" style="margin-top:12px;">
+            I keep projects fast and maintainable: clear structure, optimized assets, and smooth UI.
+          </p>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section id="experience">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">Experience</h2>
+            <p class="section-desc">Freelance projects and delivered work</p>
+          </div>
+        </div>
+
+        <div class="card timeline reveal">
+          <div class="tl-item">
+            <div class="tl-top">
+              <div class="tl-title">Financial Web Application (50+ pages)</div>
+              <div class="tl-date">May 19, 2023 → Jun 28, 2023</div>
+            </div>
+            <div class="chips" aria-label="Used technologies">
+              <span class="chip">HTML</span>
+              <span class="chip">CSS</span>
+              <span class="chip">JavaScript</span>
+              <span class="chip">PHP</span>
+            </div>
+            <div class="tl-meta">
+              <a class="link" href="https://mostaql.com/project/745011-%D8%A8%D8%B1%D9%85%D8%AC%D8%A9-%D9%85%D9%88%D9%82%D8%B9-website" target="_blank" rel="noopener">
+                Client review
+                <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-top">
+              <div class="tl-title">AI Model for E-Commerce Related Products (Custom Integration)</div>
+              <div class="tl-date">Aug 01, 2023 → Sep 05, 2023</div>
+            </div>
+            <p style="margin:8px 0 0; color:var(--muted); font-weight:650;">
+              Built, trained, and deployed a product-recommendation model based on user interactions.
+              Exposed via an API and integrated into a custom WordPress store workflow.
+            </p>
+            <div class="chips" aria-label="Used technologies" style="margin-top:10px;">
+              <span class="chip">Python <small>Flask</small></span>
+              <span class="chip">PHP</span>
+              <span class="chip">WordPress</span>
+              <span class="chip">API Integration</span>
+            </div>
+            <div class="tl-meta">
+              <a class="link" href="https://mostaql.com/project/777588-%D9%85%D8%A8%D8%B1%D9%85%D8%AC-php-%D9%8A%D8%B3%D8%AA%D8%B7%D9%8A%D8%B9-%D8%A7%D9%84%D8%AA%D8%B9%D8%A7%D9%85%D9%84-%D9%85%D8%B9-%D9%88%D8%A7%D8%AC%D9%87%D8%A7%D8%AA-%D8%A8%D8%B1%D9%85%D8%AC%D8%A9-%D8%A7%D9%84%D8%AA%D8%B7%D8%A8%D9%8A%D9%82%D8%A7%D8%AA-apis" target="_blank" rel="noopener">
+                Client review
+                <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
+
+          <p class="note">
+            More projects are being prepared for publishing with screenshots, demos, and repositories.
+          </p>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="projects">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">Projects / Portfolio</h2>
+            <p class="section-desc">Showcase area</p>
+          </div>
+        </div>
+
+        <div class="card placeholder reveal">
+          <div>
+            <div style="font-weight:900; letter-spacing:-.2px;">Portfolio is coming soon</div>
+            <div class="note" style="margin:6px 0 0;">
+              Uploading work samples, screenshots, and live demos.
+            </div>
+          </div>
+          <span class="badge">In progress ⏳</span>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">Contact</h2>
+            <p class="section-desc">Let’s build something great</p>
+          </div>
+        </div>
+
+        <div class="card contact reveal">
+          <div class="contact-row">
+            <div class="left">
+              <span>Email</span>
+              <b>samerjk07@gmail.com</b>
+            </div>
+            <div class="cta">
+              <a class="btn primary" href="mailto:samerjk07@gmail.com?subject=Hello%20Samer%20—%20Project%20Inquiry">Email me</a>
+              <button class="btn" type="button" id="copyEmailBtn2">Copy</button>
+            </div>
+          </div>
+
+          <div class="contact-row">
+            <div class="left">
+              <span>WhatsApp</span>
+              <b>Not set</b>
+            </div>
+            <div class="cta">
+              <!-- Replace with: https://wa.me/9647XXXXXXXXX -->
+              <a class="btn" href="#" id="waContact" aria-disabled="true" title="Add your WhatsApp number to enable">Enable WhatsApp link</a>
+            </div>
+          </div>
+
+          <div class="contact-row">
+            <div class="left">
+              <span>Location</span>
+              <b>Iraq</b>
+            </div>
+            <div class="cta">
+              <a class="btn ghost" href="#top">Back to top ↑</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div class="container" style="padding:0;">
+          © <span id="year"></span> Samer Jasim — Software Developer. Built as a fast static HTML5 page.
+        </div>
+      </footer>
+    </div>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">Copied</div>
+
+  <script>
+    // ======= Small JS (optional) for theme toggle + copy email + reveal animation =======
+
+    const email = "samerjk07@gmail.com";
+
+    // Year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Toast
+    const toast = document.getElementById("toast");
+    let toastTimer = null;
+    function showToast(msg){
+      toast.textContent = msg;
+      toast.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(()=> toast.classList.remove("show"), 1200);
+    }
+
+    // Copy email
+    async function copyEmail(){
+      try{
+        await navigator.clipboard.writeText(email);
+        showToast("Email copied");
+      }catch{
+        // fallback
+        const ta = document.createElement("textarea");
+        ta.value = email;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        ta.remove();
+        showToast("Email copied");
+      }
+    }
+    document.getElementById("copyEmailBtn").addEventListener("click", copyEmail);
+    document.getElementById("copyEmailBtn2").addEventListener("click", copyEmail);
+
+    // Theme toggle (Auto by system, but user can override)
+    const themeBtn = document.getElementById("themeBtn");
+    const key = "samer_theme";
+    const saved = localStorage.getItem(key);
+    if(saved === "light" || saved === "dark"){
+      document.documentElement.setAttribute("data-theme", saved);
+    }
+
+    function toggleTheme(){
+      const cur = document.documentElement.getAttribute("data-theme");
+      const next = (cur === "dark") ? "light" : (cur === "light" ? "" : "dark");
+      if(next){
+        document.documentElement.setAttribute("data-theme", next);
+        localStorage.setItem(key, next);
+        showToast(next.charAt(0).toUpperCase() + next.slice(1) + " mode");
+      }else{
+        document.documentElement.removeAttribute("data-theme");
+        localStorage.removeItem(key);
+        showToast("System mode");
+      }
+    }
+    themeBtn.addEventListener("click", toggleTheme);
+
+    // Reveal animation on scroll
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if(!prefersReduced){
+      const els = document.querySelectorAll(".reveal");
+      const io = new IntersectionObserver((entries)=>{
+        for(const e of entries){
+          if(e.isIntersecting) e.target.classList.add("in");
+        }
+      }, { threshold: 0.12 });
+      els.forEach(el => io.observe(el));
+    } else {
+      document.querySelectorAll(".reveal").forEach(el => el.classList.add("in"));
+    }
+
+    // WhatsApp placeholder:
+    // To enable WhatsApp:
+    // 1) Replace YOUR_NUMBER in international format (no +): e.g. 9647XXXXXXXXX
+    // 2) Uncomment lines below and set your number.
+    /*
+    const waNumber = "9647XXXXXXXXX";
+    const waUrl = "https://wa.me/" + waNumber;
+    document.getElementById("whatsappBtn").href = waUrl;
+    document.getElementById("whatsappBtn").setAttribute("aria-disabled","false");
+    document.getElementById("waContact").href = waUrl;
+    document.getElementById("waContact").setAttribute("aria-disabled","false");
+    document.getElementById("waContact").textContent = "Open WhatsApp";
+    document.querySelectorAll('[href="#"]').forEach(a => a.addEventListener("click", (e)=> e.preventDefault()));
+    */
+  </script>
+</body>
+</html>
